@@ -45,7 +45,7 @@ const webpackConfig: webpack.Configuration = {
         extensions: ['.ts', '.js'],
         modules: [ROOT, 'node_modules'],
     },
-    externals: setup.externals,
+    externals: { ...setup.externals, '@youwol/potree': "window['Potree']" },
     module: {
         rules: [
             /****************
@@ -73,10 +73,10 @@ const webpackConfig: webpack.Configuration = {
     devtool: 'source-map',
     devServer: {
         static: {
-            directory: path.join(__dirname, './src'),
+            directory: path.join(__dirname, './'),
         },
         compress: true,
-        port: 5000,
+        port: 3013,
     },
 }
 export default webpackConfig
