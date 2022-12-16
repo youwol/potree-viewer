@@ -1,24 +1,9 @@
-export {}
-import * as Potree from '@youwol/potree'
-
-const viewer = new Potree.Viewer(document.getElementById('potree_render_area'))
-
-viewer.setEDLEnabled(true)
-viewer.setFOV(60)
-viewer.setPointBudget(1e6)
-viewer.setClipTask(Potree.ClipTask.SHOW_INSIDE)
-viewer.loadSettingsFromURL()
+import { PotreeView } from './potree.view'
+import { render } from '@youwol/flux-view'
 
 const assetId = new URLSearchParams(window.location.search).get('id')
 
-const url = `/api/assets-gateway/assets-backend/assets/${assetId}/files/metadata.json`
-Potree.loadPointCloud(url).then(({ pointcloud }) => {
-    const material = pointcloud.material
+const pointCloudUrl = `/api/assets-gateway/assets-backend/assets/${assetId}/files/metadata.json`
 
-    material.activeAttributeName = 'rgba'
-    material.minSize = 2
-    material.pointSizeType = Potree.PointSizeType.ADAPTIVE
-
-    viewer.scene.addPointCloud(pointcloud)
-    viewer.fitToScreen()
-})
+const vDOM = new PotreeView({ pointCloudUrl })
+document.getElementById('content').appendChild(render(vDOM))
