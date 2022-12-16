@@ -1,18 +1,22 @@
 
 const runTimeDependencies = {
     "externals": {
+        "@youwol/potree": "^0.1.1",
         "@youwol/cdn-client": "^1.0.2",
-        "@youwol/flux-view": "^1.0.3",
-        "rxjs": "^6.5.5"
+        "@youwol/flux-view": "^1.0.3"
     },
     "includedInBundle": {}
 }
 const externals = {
+    "@youwol/potree": "window['Potree_APIv01']",
     "@youwol/cdn-client": "window['@youwol/cdn-client_APIv1']",
-    "@youwol/flux-view": "window['@youwol/flux-view_APIv1']",
-    "rxjs": "window['rxjs_APIv6']"
+    "@youwol/flux-view": "window['@youwol/flux-view_APIv1']"
 }
 const exportedSymbols = {
+    "@youwol/potree": {
+        "apiKey": "01",
+        "exportedSymbol": "Potree"
+    },
     "@youwol/cdn-client": {
         "apiKey": "1",
         "exportedSymbol": "@youwol/cdn-client"
@@ -20,10 +24,6 @@ const exportedSymbols = {
     "@youwol/flux-view": {
         "apiKey": "1",
         "exportedSymbol": "@youwol/flux-view"
-    },
-    "rxjs": {
-        "apiKey": "6",
-        "exportedSymbol": "rxjs"
     }
 }
 
@@ -31,27 +31,27 @@ const exportedSymbols = {
 const mainEntry : Object = {
     "entryFile": "./main.ts",
     "loadDependencies": [
+        "@youwol/potree",
         "@youwol/cdn-client",
-        "@youwol/flux-view",
-        "rxjs"
+        "@youwol/flux-view"
     ]
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types -- allow to allow no secondary entries
 const secondaryEntries : Object = {}
 const entries = {
-     'potree-viewer': './main.ts',
-    ...Object.values(secondaryEntries).reduce( (acc,e) => ({...acc, [`potree-viewer/${e.name}`]:e.entryFile}), {})
+     '@youwol/potree-viewer': './main.ts',
+    ...Object.values(secondaryEntries).reduce( (acc,e) => ({...acc, [`@youwol/potree-viewer/${e.name}`]:e.entryFile}), {})
 }
 export const setup = {
-    name:'potree-viewer',
-        assetId:'cG90cmVlLXZpZXdlcg==',
+    name:'@youwol/potree-viewer',
+        assetId:'QHlvdXdvbC9wb3RyZWUtdmlld2Vy',
     version:'0.1.0-wip',
     shortDescription:"",
-    developerDocumentation:'https://platform.youwol.com/applications/@youwol/cdn-explorer/latest?package=potree-viewer',
-    npmPackage:'https://www.npmjs.com/package/potree-viewer',
-    sourceGithub:'https://github.com/potree-viewer',
-    userGuide:'https://l.youwol.com/doc/potree-viewer',
+    developerDocumentation:'https://platform.youwol.com/applications/@youwol/cdn-explorer/latest?package=@youwol/potree-viewer',
+    npmPackage:'https://www.npmjs.com/package/@youwol/potree-viewer',
+    sourceGithub:'https://github.com/youwol/potree-viewer',
+    userGuide:'https://l.youwol.com/doc/@youwol/potree-viewer',
     apiVersion:'01',
     runTimeDependencies,
     externals,
@@ -73,7 +73,7 @@ export const setup = {
             modules,
             scripts,
         }).then(() => {
-            return window[`potree-viewer_APIv01`]
+            return window[`@youwol/potree-viewer_APIv01`]
         })
     },
     installAuxiliaryModule: ({name, cdnClient, installParameters}:{name: string, cdnClient, installParameters?}) => {
@@ -81,7 +81,7 @@ export const setup = {
         const parameters = installParameters || {}
         const scripts = [
             ...(parameters.scripts || []),
-            `potree-viewer#0.1.0-wip~dist/potree-viewer/${entry.name}.js`
+            `@youwol/potree-viewer#0.1.0-wip~dist/@youwol/potree-viewer/${entry.name}.js`
         ]
         const modules = [
             ...(parameters.modules || []),
@@ -95,7 +95,7 @@ export const setup = {
             modules,
             scripts,
         }).then(() => {
-            return window[`potree-viewer/${entry.name}_APIv01`]
+            return window[`@youwol/potree-viewer/${entry.name}_APIv01`]
         })
     }
 }
