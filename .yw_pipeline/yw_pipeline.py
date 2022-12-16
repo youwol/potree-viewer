@@ -11,12 +11,12 @@ class PipelineFactory(IPipelineFactory):
 
     async def get(self, _env: YouwolEnvironment, context: Context):
         config = PipelineConfig(target=BrowserApp(
-            displayName="potree-viewer",
+            displayName="Cloud points",
             execution=Execution(
                 standalone=True
             ),
             graphics=BrowserAppGraphics(
-                appIcon={'class': 'far fa-laugh-beam fa-2x'},
+                appIcon={'class': 'fas fa-cubes fa-2x'},
                 fileIcon={}
             ),
             links=[
