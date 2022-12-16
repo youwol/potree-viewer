@@ -1,53 +1,24 @@
-import { VirtualDOM, attr$, render } from '@youwol/flux-view'
-import { timer } from 'rxjs'
-
 export {}
+import * as Potree from '@youwol/potree'
 
-/**
- * @category View
- */
-class ContentView implements VirtualDOM {
-    /**
-     * @group Immutable DOM constants
-     */
-    public readonly class =
-        'fv-text-primary p-5 h-100 text-center d-flex flex-column justify-content-around'
+const viewer = new Potree.Viewer(document.getElementById('potree_render_area'))
 
-    /**
-     * @group Immutable DOM constants
-     */
-    public readonly children: VirtualDOM[]
+viewer.setEDLEnabled(true)
+viewer.setFOV(60)
+viewer.setPointBudget(1e6)
+viewer.setClipTask(Potree.ClipTask.SHOW_INSIDE)
+viewer.loadSettingsFromURL()
 
-    constructor() {
-        this.children = [
-            {
-                children: [
-                    {
-                        innerText: attr$(
-                            timer(0, 1000),
-                            () => `⌚ ${new Date().toLocaleString()}`,
-                        ),
-                    },
-                    {
-                        tag: 'h1',
-                        innerText:
-                            '🎉 Your app has been successfully published 🎉',
-                    },
-                ],
-            },
-            {
-                tag: 'a',
-                href: '',
-                innerText: 'Find out more on writing apps',
-            },
-            {
-                tag: 'a',
-                href: '',
-                innerText:
-                    'The source code of the app & debug options are in the dev-tool of your browser',
-            },
-        ]
-    }
-}
+const assetId = new URLSearchParams(window.location.search).get('id')
 
-document.getElementById('content').appendChild(render(new ContentView()))
+const url = `/api/assets-gateway/assets-backend/assets/${assetId}/files/metadata.json`
+Potree.loadPointCloud(url).then(({ pointcloud }) => {
+    const material = pointcloud.material
+
+    material.activeAttributeName = 'rgba'
+    material.minSize = 2
+    material.pointSizeType = Potree.PointSizeType.ADAPTIVE
+
+    viewer.scene.addPointCloud(pointcloud)
+    viewer.fitToScreen()
+})
