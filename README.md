@@ -1,4 +1,4 @@
-# potree-viewer
+# @youwol/potree-viewer
 
 
 
@@ -7,15 +7,15 @@ This library is part of the hybrid cloud/local ecosystem
 
 ## Links
 
-[Running app.](https://platform.youwol.com/applications/potree-viewer/latest)
+[Running app.](https://platform.youwol.com/applications/@youwol/potree-viewer/latest)
 
-[Online user-guide](https://l.youwol.com/doc/potree-viewer)
+[Online user-guide](https://l.youwol.com/doc/@youwol/potree-viewer)
 
-[Developers documentation](https://platform.youwol.com/applications/@youwol/cdn-explorer/latest?package=potree-viewer)
+[Developers documentation](https://platform.youwol.com/applications/@youwol/cdn-explorer/latest?package=@youwol/potree-viewer)
 
-[Package on npm](https://www.npmjs.com/package/potree-viewer)
+[Package on npm](https://www.npmjs.com/package/@youwol/potree-viewer)
 
-[Source on GitHub](https://github.com/potree-viewer)
+[Source on GitHub](https://github.com/youwol/potree-viewer)
 
 # Installation, Build, Test
 
@@ -57,13 +57,13 @@ yarn test-coverage
 
 To start the 'dev-server':
 
--   add `CdnOverride(packageName="potree-viewer", port=5000)` in your
+-   add `CdnOverride(packageName="@youwol/potree-viewer", port=3013)` in your
     [YouWol configuration file](https://l.youwol.com/doc/py-youwol/configuration)
     (in the `dispatches` list).
 -   start [py-youwol](https://l.youwol.com/doc/py-youwol)
 -   then execute `yarn start`
 
-The application can be accessed [here](http://localhost:2000/applications/potree-viewer/latest) (providing py-youwol
+The application can be accessed [here](http://localhost:2000/applications/@youwol/potree-viewer/latest) (providing py-youwol
 running using the default port `2000`).
 
 ---
