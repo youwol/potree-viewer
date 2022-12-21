@@ -46,7 +46,7 @@ const entries = {
 export const setup = {
     name:'@youwol/potree-viewer',
         assetId:'QHlvdXdvbC9wb3RyZWUtdmlld2Vy',
-    version:'0.1.0-wip',
+    version:'0.1.1-wip',
     shortDescription:"",
     developerDocumentation:'https://platform.youwol.com/applications/@youwol/cdn-explorer/latest?package=@youwol/potree-viewer',
     npmPackage:'https://www.npmjs.com/package/@youwol/potree-viewer',
@@ -81,7 +81,7 @@ export const setup = {
         const parameters = installParameters || {}
         const scripts = [
             ...(parameters.scripts || []),
-            `@youwol/potree-viewer#0.1.0-wip~dist/@youwol/potree-viewer/${entry.name}.js`
+            `@youwol/potree-viewer#0.1.1-wip~dist/@youwol/potree-viewer/${entry.name}.js`
         ]
         const modules = [
             ...(parameters.modules || []),

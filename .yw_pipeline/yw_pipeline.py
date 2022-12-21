@@ -1,5 +1,5 @@
 from youwol.environment import YouwolEnvironment
-from youwol.routers.projects import IPipelineFactory, BrowserApp, Execution, Link, BrowserAppGraphics
+from youwol.routers.projects import IPipelineFactory, BrowserApp, Execution, Link, BrowserAppGraphics, OpenWith
 from youwol.pipelines.pipeline_typescript_weback_npm import pipeline, PipelineConfig
 from youwol_utils.context import Context
 
@@ -13,7 +13,13 @@ class PipelineFactory(IPipelineFactory):
         config = PipelineConfig(target=BrowserApp(
             displayName="Cloud points",
             execution=Execution(
-                standalone=True
+                standalone=False,
+                parametrized=[
+                    OpenWith(
+                        match={"kind": "@potree/cloud-points"},
+                        parameters={"id": 'assetId'}
+                    )
+                ]
             ),
             graphics=BrowserAppGraphics(
                 appIcon={'class': 'fas fa-cubes fa-2x'},
