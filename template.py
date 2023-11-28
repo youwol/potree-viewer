@@ -3,7 +3,7 @@ from pathlib import Path
 
 from youwol.pipelines.pipeline_typescript_weback_npm import Template, PackageType, Dependencies, \
     RunTimeDeps, generate_template, DevServer, Bundles, MainModule
-from youwol_utils import parse_json
+from youwol.utils import parse_json
 
 folder_path = Path(__file__).parent
 
@@ -27,10 +27,10 @@ template = Template(
         )
     ),
     bundles=Bundles(
-      mainModule=MainModule(
-          entryFile='./main.ts',
-          loadDependencies=list(load_dependencies.keys())
-      )
+        mainModule=MainModule(
+            entryFile='./main.ts',
+            loadDependencies=list(load_dependencies.keys())
+        )
     ),
     userGuide=True,
     devServer=DevServer(
