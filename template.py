@@ -45,7 +45,7 @@ shutil.copyfile(
 )
 # There isn't webpack.config.ts because the external for potree is redefined
 for file in ['README.md', '.gitignore', '.npmignore', '.prettierignore', 'LICENSE', 'package.json',
-             'tsconfig.json']:
+             'tsconfig.json', 'jest.config.ts']:
     shutil.copyfile(
         src=folder_path / '.template' / file,
         dst=folder_path / file
