@@ -1,12 +1,9 @@
-from youwol.environment import YouwolEnvironment
-from youwol.routers.projects import IPipelineFactory, BrowserApp, Execution, Link, BrowserAppGraphics, OpenWith
-from youwol.pipelines.pipeline_typescript_weback_npm import pipeline, PipelineConfig
-from youwol_utils.context import Context
 from pathlib import Path
 
 from youwol.app.environment import YouwolEnvironment
 from youwol.app.routers.projects import IPipelineFactory, BrowserApp, Execution, Link, BrowserAppGraphics, OpenWith
 from youwol.pipelines.pipeline_typescript_weback_npm import pipeline, PipelineConfig, PublishConfig
+from youwol.utils import encode_id, parse_json
 from youwol.utils.context import Context
 
 folder_path = Path(__file__).parent.parent
@@ -41,7 +38,11 @@ class PipelineFactory(IPipelineFactory):
                 Link(name="coverage", url="coverage/lcov-report/index.html"),
                 Link(name="bundle-analysis", url="dist/bundle-analysis.html")
             ]
-        ))
+        ),
+            publishConfig=PublishConfig(
+                packagedFolders=['assets']
+            )
+        )
         return await pipeline(config, context)
 
 
