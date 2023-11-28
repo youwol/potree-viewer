@@ -1,8 +1,8 @@
 {
     "name": "@youwol/potree-viewer",
-    "description": "",
+    "description": "Potree viewer",
     "version": "0.1.0-wip",
-    "author": null,
+    "author": "greinisch@youwol.com",
     "homepage": "https://github.com/youwol/potree-viewer#README.md",
     "main": "dist/index.html",
     "types": "src/index.ts",
